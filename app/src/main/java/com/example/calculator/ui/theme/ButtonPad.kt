@@ -30,6 +30,16 @@ import androidx.compose.ui.unit.sp
 fun ButtonPad(
     userInput: String,
     on1Click: () -> Unit,
+    on2Click: () -> Unit,
+    on3Click: () -> Unit,
+    on4Click: () -> Unit,
+    on5Click: () -> Unit,
+    on6Click: () -> Unit,
+    on7Click: () -> Unit,
+    on8Click: () -> Unit,
+    on9Click: () -> Unit,
+    on0Click: () -> Unit,
+
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -40,6 +50,7 @@ fun ButtonPad(
         ) {
 
         Spacer(modifier = Modifier.height(20.dp))
+
         if (userInput.isNotEmpty()) {
             Text(userInput)
         }
@@ -59,7 +70,7 @@ fun ButtonPad(
             Spacer(modifier = Modifier.padding(7.dp))
 
             Button(
-                onClick = { println("Button 1 clicked") },
+                onClick = on2Click,
                 modifier = Modifier
                     .size(100.dp, 50.dp)
                     .weight(1f),
@@ -73,7 +84,7 @@ fun ButtonPad(
             Spacer(modifier = Modifier.padding(7.dp))
 
             Button(
-                onClick = { println("Button 1 clicked") },
+                onClick = on3Click,
                 modifier = Modifier
                     .size(100.dp, 50.dp)
                     .weight(1f),
@@ -89,7 +100,7 @@ fun ButtonPad(
 
         Row(modifier = Modifier.fillMaxWidth()) {
             Button(
-                onClick = { println("Button 1 clicked") },
+                onClick = on4Click,
                 modifier = Modifier
                     .size(100.dp, 50.dp)
                     .weight(1f),
@@ -104,7 +115,7 @@ fun ButtonPad(
             Spacer(modifier = Modifier.padding(7.dp))
 
             Button(
-                onClick = { println("Button 1 clicked") },
+                onClick = on5Click,
                 modifier = Modifier
                     .size(100.dp, 50.dp)
                     .weight(1f),
@@ -118,7 +129,7 @@ fun ButtonPad(
             Spacer(modifier = Modifier.padding(7.dp))
 
             Button(
-                onClick = { println("Button 1 clicked") },
+                onClick = on6Click,
                 modifier = Modifier
                     .size(100.dp, 50.dp)
                     .weight(1f),
@@ -134,7 +145,7 @@ fun ButtonPad(
 
         Row(modifier = Modifier.fillMaxWidth()) {
             Button(
-                onClick = { println("Button 1 clicked") },
+                onClick = on7Click,
                 modifier = Modifier
                     .size(100.dp, 50.dp)
                     .weight(1f),
@@ -148,7 +159,7 @@ fun ButtonPad(
             Spacer(modifier = Modifier.padding(7.dp))
 
             Button(
-                onClick = { println("Button 1 clicked") },
+                onClick = on8Click,
                 modifier = Modifier
                     .size(100.dp, 50.dp)
                     .weight(1f),
@@ -162,7 +173,7 @@ fun ButtonPad(
             Spacer(modifier = Modifier.padding(7.dp))
 
             Button(
-                onClick = { println("Button 1 clicked") },
+                onClick = on9Click,
                 modifier = Modifier
                     .size(100.dp, 50.dp)
                     .weight(1f),
@@ -177,7 +188,7 @@ fun ButtonPad(
         Spacer(modifier = Modifier.padding(7.dp))
 
         Button(
-            onClick = { println("Button 1 clicked") },
+            onClick = on0Click,
             modifier = Modifier
                 .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
