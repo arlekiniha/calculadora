@@ -1,6 +1,7 @@
 package com.example.calculator.ui.theme
 
 import android.R.attr.onClick
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -39,7 +41,9 @@ fun ButtonPad(
     on8Click: () -> Unit,
     on9Click: () -> Unit,
     on0Click: () -> Unit,
-
+    onPlusClick: () -> Unit,
+    onMinusClick: () -> Unit,
+    onTimesClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -52,8 +56,20 @@ fun ButtonPad(
         Spacer(modifier = Modifier.height(20.dp))
 
         if (userInput.isNotEmpty()) {
-            Text(userInput)
+            Row(
+                modifier = Modifier
+                    .padding(30.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Text(
+                    text = userInput,
+                    fontSize = 25.sp
+                )
+            }
         }
+
+
         Row(modifier = Modifier.fillMaxWidth()) {
             Button(
                 onClick = on1Click,
@@ -93,6 +109,20 @@ fun ButtonPad(
                 )
             ) {
                 Text("3")
+            }
+
+            Spacer(Modifier.padding(7.dp))
+
+            Button(
+                onClick = onTimesClick,
+                Modifier
+                    .size(100.dp, 50.dp)
+                    .weight(1f),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.DarkGray,
+                )
+            ) {
+                Text("X")
             }
         }
 
@@ -139,6 +169,20 @@ fun ButtonPad(
             ) {
                 Text("6")
             }
+
+            Spacer(Modifier.padding(7.dp))
+
+            Button(
+                onClick = onPlusClick,
+                Modifier
+                    .size(100.dp, 50.dp)
+                    .weight(1f),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.DarkGray,
+                )
+            ) {
+                Text("+")
+            }
         }
 
         Spacer(modifier = Modifier.padding(7.dp))
@@ -184,21 +228,73 @@ fun ButtonPad(
                 Text("9")
             }
 
-        }
-        Spacer(modifier = Modifier.padding(7.dp))
+            Spacer(Modifier.padding(7.dp))
 
-        Button(
-            onClick = on0Click,
-            modifier = Modifier
-                .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.DarkGray,
-            )
-        ) {
-            Text("0")
+            Button(
+                onClick = onMinusClick,
+                Modifier
+                    .size(100.dp, 50.dp)
+                    .weight(1f),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.DarkGray,
+                )
+            ) {
+                Text("-")
+            }
+
+        }
+
+        Spacer(modifier = Modifier.padding(7.dp))
+        Row(Modifier.fillMaxWidth()) {
+            Button(
+                onClick = on0Click,
+                colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray),
+                modifier = Modifier.size(260.dp, 50.dp)
+            ) {
+                Text("0")
+            }
+
+            Spacer(Modifier.padding(7.dp))
+
+            Button(
+                onClick = { println("something") },
+                modifier = Modifier
+                    .size(100.dp, 50.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.DarkGray,
+                )
+            ) {
+                Text("=")
+            }
         }
     }
 }
+
+@Preview
+@Composable
+fun Preview() {
+    SetBackground()
+    ButtonPad(
+        userInput = "",
+        on1Click = { },
+        on2Click = { },
+        on3Click = { },
+        on4Click = { },
+        on5Click = { },
+        on6Click = { },
+        on7Click = { },
+        on8Click = { },
+        on9Click = { },
+        on0Click = { },
+        onPlusClick = { },
+        onMinusClick = { },
+        onTimesClick = { },
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(30.dp),
+    )
+}
+
 
 
 
