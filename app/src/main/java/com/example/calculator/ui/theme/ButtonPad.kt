@@ -26,6 +26,72 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.getValue
+
+@Composable
+fun Calculator(modifier: Modifier = Modifier) {
+    var userInput by remember { mutableStateOf("") }
+    Row(modifier = modifier) {
+        ButtonPad(
+            userInput = userInput,
+            on1Click = { userInput += "1" },
+            on2Click = { userInput += "2" },
+            on3Click = { userInput += "3" },
+            on4Click = { userInput += "4" },
+            on5Click = { userInput += "5" },
+            on6Click = { userInput += "6" },
+            on7Click = { userInput += "7" },
+            on8Click = { userInput += "8" },
+            on9Click = { userInput += "9" },
+            on0Click = { userInput += "0" },
+            modifier = Modifier
+                .weight(3f)
+                .padding(30.dp)
+        )
+
+        ActionsPad(
+            onPlusClick = { userInput += "+" },
+            onMinusClick = { userInput += "-" },
+            onTimesClick = { userInput += "x" },
+            modifier = Modifier.weight(1f),
+        )
+
+    }
+}
+
+@Composable
+fun ActionsPad(
+    onPlusClick: () -> Unit,
+    onMinusClick: () -> Unit,
+    onTimesClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier = Modifier) {
+        NumberButton(onPlusClick, "+")
+
+        Spacer(modifier = Modifier.padding(7.dp))
+
+        NumberButton(onMinusClick, "-")
+
+        Spacer(modifier = Modifier.padding(7.dp))
+
+        NumberButton(onTimesClick, "x")
+    }
+}
+
+@Composable
+fun NumberButton(onButtonClick: () -> Unit, text: String, modifier: Modifier = Modifier) {
+    Button(
+        onClick = onButtonClick,
+        modifier = modifier
+            .height(50.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.DarkGray,
+        )
+    ) {
+        Text(text)
+    }
+}
 
 
 @Composable
@@ -41,9 +107,6 @@ fun ButtonPad(
     on8Click: () -> Unit,
     on9Click: () -> Unit,
     on0Click: () -> Unit,
-    onPlusClick: () -> Unit,
-    onMinusClick: () -> Unit,
-    onTimesClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -70,202 +133,77 @@ fun ButtonPad(
         }
 
 
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Button(
-                onClick = on1Click,
-                modifier = Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("1")
-            }
+        Row {
+
+            NumberButton(on1Click, "1", Modifier.weight(1f))
 
             Spacer(modifier = Modifier.padding(7.dp))
 
-            Button(
-                onClick = on2Click,
-                modifier = Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("2")
-            }
+            NumberButton(on2Click, "2", Modifier.weight(1f))
 
             Spacer(modifier = Modifier.padding(7.dp))
 
-            Button(
-                onClick = on3Click,
-                modifier = Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("3")
-            }
+            NumberButton(on3Click, "3", Modifier.weight(1f))
 
             Spacer(Modifier.padding(7.dp))
 
-            Button(
-                onClick = onTimesClick,
-                Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("X")
-            }
         }
 
         Spacer(modifier = Modifier.padding(7.dp))
 
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Button(
-                onClick = on4Click,
-                modifier = Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-
-            ) {
-                Text("4")
-            }
-
-            Spacer(modifier = Modifier.padding(7.dp))
-
-            Button(
-                onClick = on5Click,
-                modifier = Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("5")
-            }
-
-            Spacer(modifier = Modifier.padding(7.dp))
-
-            Button(
-                onClick = on6Click,
-                modifier = Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("6")
-            }
-
-            Spacer(Modifier.padding(7.dp))
-
-            Button(
-                onClick = onPlusClick,
-                Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("+")
-            }
-        }
+        NumberButton(on4Click, "4", Modifier.weight(1f))
 
         Spacer(modifier = Modifier.padding(7.dp))
 
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Button(
-                onClick = on7Click,
-                modifier = Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("7")
-            }
-
-            Spacer(modifier = Modifier.padding(7.dp))
-
-            Button(
-                onClick = on8Click,
-                modifier = Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("8")
-            }
-
-            Spacer(modifier = Modifier.padding(7.dp))
-
-            Button(
-                onClick = on9Click,
-                modifier = Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("9")
-            }
-
-            Spacer(Modifier.padding(7.dp))
-
-            Button(
-                onClick = onMinusClick,
-                Modifier
-                    .size(100.dp, 50.dp)
-                    .weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("-")
-            }
-
-        }
+        NumberButton(on5Click, "5", Modifier.weight(1f))
 
         Spacer(modifier = Modifier.padding(7.dp))
-        Row(Modifier.fillMaxWidth()) {
-            Button(
-                onClick = on0Click,
-                colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray),
-                modifier = Modifier.size(260.dp, 50.dp)
-            ) {
-                Text("0")
-            }
 
-            Spacer(Modifier.padding(7.dp))
+        NumberButton(on6Click, "6", Modifier.weight(1f))
 
-            Button(
-                onClick = { println("something") },
-                modifier = Modifier
-                    .size(100.dp, 50.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.DarkGray,
-                )
-            ) {
-                Text("=")
-            }
+        Spacer(Modifier.padding(7.dp))
+    }
+
+    Spacer(modifier = Modifier.padding(7.dp))
+
+    Row {
+
+        NumberButton(on7Click, "7", Modifier.weight(1f))
+
+        Spacer(modifier = Modifier.padding(7.dp))
+
+        NumberButton(on8Click, "8", Modifier.weight(1f))
+
+        Spacer(modifier = Modifier.padding(7.dp))
+
+        NumberButton(on9Click, "9", Modifier.weight(1f))
+
+        Spacer(Modifier.padding(7.dp))
+
+
+    }
+
+    Spacer(modifier = Modifier.padding(7.dp))
+    Row {
+        Button(
+            onClick = on0Click,
+            colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray),
+            modifier = Modifier.size(260.dp, 50.dp)
+        ) {
+            Text("0")
+        }
+
+        Spacer(Modifier.padding(7.dp))
+
+        Button(
+            onClick = { println("something") },
+            modifier = Modifier
+                .size(100.dp, 50.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.DarkGray,
+            )
+        ) {
+            Text("=")
         }
     }
 }
@@ -286,11 +224,7 @@ fun Preview() {
         on8Click = { },
         on9Click = { },
         on0Click = { },
-        onPlusClick = { },
-        onMinusClick = { },
-        onTimesClick = { },
         modifier = Modifier
-            .fillMaxSize()
             .padding(30.dp),
     )
 }

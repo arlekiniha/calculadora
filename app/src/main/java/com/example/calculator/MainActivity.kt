@@ -18,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import com.example.calculator.ui.theme.ButtonPad
+import com.example.calculator.ui.theme.Calculator
 import com.example.calculator.ui.theme.SetBackground
 
 
@@ -26,27 +27,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            var userInput by remember { mutableStateOf("") }
-            SetBackground()
-            ButtonPad(
-                userInput = userInput,
-                on1Click = { userInput += "1" },
-                on2Click = { userInput += "2" },
-                on3Click = { userInput += "3" },
-                on4Click = { userInput += "4" },
-                on5Click = { userInput += "5" },
-                on6Click = { userInput += "6" },
-                on7Click = { userInput += "7" },
-                on8Click = { userInput += "8" },
-                on9Click = { userInput += "9" },
-                on0Click = { userInput += "0" },
-                onPlusClick = { userInput += "+" },
-                onMinusClick = { userInput += "-" },
-                onTimesClick = { userInput += "x" },
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(30.dp)
-            )
+            Calculator(modifier = Modifier)
         }
     }
 }
@@ -68,9 +49,6 @@ fun Preview() {
         on8Click = { },
         on9Click = { },
         on0Click = { },
-        onPlusClick = { },
-        onMinusClick = { },
-        onTimesClick = { },
         modifier = Modifier
             .fillMaxSize()
             .padding(30.dp),
