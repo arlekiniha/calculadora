@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -53,9 +54,9 @@ fun Calculator(modifier: Modifier = Modifier) {
             onPlusClick = { userInput += "+" },
             onMinusClick = { userInput += "-" },
             onTimesClick = { userInput += "x" },
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .width(70.dp),
         )
-
     }
 }
 
@@ -66,7 +67,10 @@ fun ActionsPad(
     onTimesClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = Modifier) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Bottom
+    ) {
         NumberButton(onPlusClick, "+")
 
         Spacer(modifier = Modifier.padding(7.dp))
@@ -113,8 +117,7 @@ fun ButtonPad(
         modifier = modifier,
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.Start,
-
-        ) {
+    ) {
 
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -132,8 +135,10 @@ fun ButtonPad(
             }
         }
 
-
-        Row {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
 
             NumberButton(on1Click, "1", Modifier.weight(1f))
 
@@ -149,24 +154,33 @@ fun ButtonPad(
 
         }
 
-        Spacer(modifier = Modifier.padding(7.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
 
-        NumberButton(on4Click, "4", Modifier.weight(1f))
+            Spacer(modifier = Modifier.padding(7.dp))
 
-        Spacer(modifier = Modifier.padding(7.dp))
+            NumberButton(on4Click, "4", Modifier.weight(1f))
 
-        NumberButton(on5Click, "5", Modifier.weight(1f))
+            Spacer(modifier = Modifier.padding(7.dp))
 
-        Spacer(modifier = Modifier.padding(7.dp))
+            NumberButton(on5Click, "5", Modifier.weight(1f))
 
-        NumberButton(on6Click, "6", Modifier.weight(1f))
+            Spacer(modifier = Modifier.padding(7.dp))
 
-        Spacer(Modifier.padding(7.dp))
+            NumberButton(on6Click, "6", Modifier.weight(1f))
+
+            Spacer(Modifier.padding(7.dp))
+        }
     }
 
     Spacer(modifier = Modifier.padding(7.dp))
 
-    Row {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
 
         NumberButton(on7Click, "7", Modifier.weight(1f))
 
@@ -180,53 +194,24 @@ fun ButtonPad(
 
         Spacer(Modifier.padding(7.dp))
 
-
     }
 
     Spacer(modifier = Modifier.padding(7.dp))
-    Row {
-        Button(
-            onClick = on0Click,
-            colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray),
-            modifier = Modifier.size(260.dp, 50.dp)
-        ) {
-            Text("0")
-        }
-
-        Spacer(Modifier.padding(7.dp))
-
-        Button(
-            onClick = { println("something") },
-            modifier = Modifier
-                .size(100.dp, 50.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.DarkGray,
-            )
-        ) {
-            Text("=")
-        }
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        NumberButton(on0Click, "0")
+        NumberButton({ println("smth") }, "=")
     }
 }
+
 
 @Preview
 @Composable
 fun Preview() {
     SetBackground()
-    ButtonPad(
-        userInput = "",
-        on1Click = { },
-        on2Click = { },
-        on3Click = { },
-        on4Click = { },
-        on5Click = { },
-        on6Click = { },
-        on7Click = { },
-        on8Click = { },
-        on9Click = { },
-        on0Click = { },
-        modifier = Modifier
-            .padding(30.dp),
-    )
+    Calculator(modifier = Modifier.fillMaxWidth())
 }
 
 

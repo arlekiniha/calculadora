@@ -37,20 +37,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Preview() {
     SetBackground()
-    ButtonPad(
-        userInput = "",
-        on1Click = { },
-        on2Click = { },
-        on3Click = { },
-        on4Click = { },
-        on5Click = { },
-        on6Click = { },
-        on7Click = { },
-        on8Click = { },
-        on9Click = { },
-        on0Click = { },
+    Calculator(
+
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(30.dp),
     )
 }
