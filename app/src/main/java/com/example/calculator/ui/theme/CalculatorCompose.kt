@@ -17,8 +17,12 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun Calculator(
     modifier: Modifier = Modifier,
+    userInput: String,
+    onNumberClick: (String) -> Unit,
+    onPlusClick: () -> Unit,
+    onMinusClick: () -> Unit,
+    onTimesClick: () -> Unit,
 ) {
-    var userInput by remember { mutableStateOf("") }
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Bottom,
@@ -32,22 +36,13 @@ fun Calculator(
             verticalAlignment = Alignment.Bottom,
         ) {
             ButtonPad(
-                on1Click = { userInput += "1" },
-                on2Click = { userInput += "2" },
-                on3Click = { userInput += "3" },
-                on4Click = { userInput += "4" },
-                on5Click = { userInput += "5" },
-                on6Click = { userInput += "6" },
-                on7Click = { userInput += "7" },
-                on8Click = { userInput += "8" },
-                on9Click = { userInput += "9" },
-                on0Click = { userInput += "0" },
+                onNumberClick = onNumberClick,
                 modifier = Modifier.weight(3f),
             )
             ActionsPad(
-                onPlusClick = { userInput += "+" },
-                onMinusClick = { userInput += "-" },
-                onTimesClick = { userInput += "x" },
+                onPlusClick = onPlusClick,
+                onMinusClick = onMinusClick,
+                onTimesClick = onTimesClick,
                 modifier = Modifier.weight(1f),
             )
         }
@@ -59,7 +54,12 @@ fun Calculator(
 @Composable
 fun Preview() {
     Calculator(
-        modifier = Modifier
+        modifier = Modifier,
+        userInput = "",
+        {},
+        {},
+        {},
+        {}
     )
 }
 

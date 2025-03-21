@@ -52,16 +52,7 @@ fun ActionsPad(
 
 @Composable
 fun ButtonPad(
-    on1Click: () -> Unit,
-    on2Click: () -> Unit,
-    on3Click: () -> Unit,
-    on4Click: () -> Unit,
-    on5Click: () -> Unit,
-    on6Click: () -> Unit,
-    on7Click: () -> Unit,
-    on8Click: () -> Unit,
-    on9Click: () -> Unit,
-    on0Click: () -> Unit,
+    onNumberClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -74,13 +65,13 @@ fun ButtonPad(
             horizontalArrangement = Arrangement.Start
         ) {
 
-            NumberButton(on1Click, "1", Modifier.weight(1f))
+            NumberButton(onClick = { onNumberClick("1") }, "1", modifier =  Modifier.weight(1f))
 
 
-            NumberButton(on2Click, "2", Modifier.weight(1f))
+            NumberButton(onClick = { onNumberClick("2") }, "2", Modifier.weight(1f))
 
 
-            NumberButton(on3Click, "3", Modifier.weight(1f))
+            NumberButton(onClick = { onNumberClick("3") }, "3", Modifier.weight(1f))
 
         }
 
@@ -90,13 +81,13 @@ fun ButtonPad(
             horizontalArrangement = Arrangement.Start
         ) {
 
-            NumberButton(on4Click, "4", Modifier.weight(1f))
+            NumberButton(onClick = { onNumberClick("4") }, "4", Modifier.weight(1f))
 
 
-            NumberButton(on5Click, "5", Modifier.weight(1f))
+            NumberButton(onClick = { onNumberClick("5") }, "5", Modifier.weight(1f))
 
 
-            NumberButton(on6Click, "6", Modifier.weight(1f))
+            NumberButton(onClick = { onNumberClick("6") }, "6", Modifier.weight(1f))
 
         }
 
@@ -107,13 +98,13 @@ fun ButtonPad(
             horizontalArrangement = Arrangement.Start
         ) {
 
-            NumberButton(on7Click, "7", Modifier.weight(1f))
+            NumberButton(onClick = { onNumberClick("7") }, "7", Modifier.weight(1f))
 
 
-            NumberButton(on8Click, "8", Modifier.weight(1f))
+            NumberButton(onClick = { onNumberClick("8") }, "8", Modifier.weight(1f))
 
 
-            NumberButton(on9Click, "9", Modifier.weight(1f))
+            NumberButton(onClick = { onNumberClick("9") }, "9", Modifier.weight(1f))
 
 
         }
@@ -124,12 +115,12 @@ fun ButtonPad(
             horizontalArrangement = Arrangement.Start
         ) {
             NumberButton(
-                on0Click,
+                onClick = { onNumberClick("0") },
                 "0",
                 modifier = Modifier.weight(1f)
             )
             NumberButton(
-                onButtonClick = { println("smth") },
+                onClick = { println("smth") },
                 text = "=",
                 modifier = Modifier.weight(2f)
             )
@@ -141,16 +132,7 @@ fun ButtonPad(
 @Composable
 private fun ButtonPadPreview() {
     ButtonPad(
-        on1Click = { },
-        on2Click = { },
-        on3Click = { },
-        on4Click = { },
-        on5Click = { },
-        on6Click = { },
-        on7Click = { },
-        on8Click = { },
-        on9Click = { },
-        on0Click = { },
+        onNumberClick = { },
         modifier = Modifier,
     )
 }

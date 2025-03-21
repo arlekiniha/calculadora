@@ -11,9 +11,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun NumberButton(onButtonClick: () -> Unit, text: String, modifier: Modifier = Modifier) {
+fun NumberButton(onClick: () -> Unit, text: String, modifier: Modifier = Modifier) {
     Button(
-        onClick = onButtonClick,
+        onClick = onClick,
         modifier = modifier
             .height(50.dp)
             .padding(5.dp)
